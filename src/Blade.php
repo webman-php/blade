@@ -12,7 +12,6 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
-use Illuminate\View\ViewServiceProvider;
 
 class Blade implements FactoryContract
 {
