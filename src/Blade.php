@@ -60,6 +60,11 @@ class Blade implements FactoryContract
     {
         $this->compiler->directive($name, $handler);
     }
+
+    public function component($class, $alias = null, $prefix = '')
+    {
+        $this->compiler->component($class, $alias, $prefix);
+    }
     
     public function if($name, callable $callback)
     {
@@ -121,10 +126,10 @@ class Blade implements FactoryContract
         }, true);
 
         $this->container->bindIf('config', function () use ($viewPaths, $cachePath) {
-            return [
+            return new Config([
                 'view.paths' => $viewPaths,
                 'view.compiled' => $cachePath,
-            ];
+            ]);
         }, true);
         
         Facade::setFacadeApplication($this->container);
