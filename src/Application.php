@@ -8,6 +8,6 @@ class Application extends Container
 {
     public function getNamespace()
     {
-        return 'app\\view\\components';
+        return 'app\\';
     }
 }
