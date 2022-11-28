@@ -32,7 +32,7 @@ class Blade implements FactoryContract
 
     public function __construct($viewPaths, string $cachePath, ContainerInterface $container = null)
     {
-        $this->container = $container ?: new Application;
+        $this->container = $container ?: new Container;
 
         $this->setupContainer((array) $viewPaths, $cachePath);
         (new ViewServiceProvider($this->container))->register();
@@ -63,6 +63,11 @@ class Blade implements FactoryContract
 
     public function component($class, $alias = null, $prefix = '')
     {
+        if (!is_null($alias)) {
+            if (!class_exists($alias)) {
+                throw new \RuntimeException("Class $alias not exists");
+            }
+        }
         $this->compiler->component($class, $alias, $prefix);
     }
     
