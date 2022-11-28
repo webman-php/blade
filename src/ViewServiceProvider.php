@@ -3,6 +3,7 @@
 namespace Jenssegers\Blade;
 
 use Illuminate\Container\Container;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Engines\CompilerEngine;
@@ -54,6 +55,7 @@ class ViewServiceProvider extends ServiceProvider
             Container::setInstance($app);
 
             $app->instance(\Illuminate\Contracts\View\Factory::class,  $factory);
+            $app->instance(\Illuminate\Contracts\Foundation\Application::class,  $app);
 
             return $factory;
         });
