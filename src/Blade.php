@@ -3,8 +3,8 @@
 namespace Jenssegers\Blade;
 
 use Illuminate\Container\Container;
+use Jenssegers\Blade\Application;
 use Illuminate\Contracts\Container\Container as ContainerInterface;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\Contracts\View\View;
 use Illuminate\Events\Dispatcher;
@@ -32,7 +32,7 @@ class Blade implements FactoryContract
 
     public function __construct($viewPaths, string $cachePath, ContainerInterface $container = null)
     {
-        $this->container = $container ?: new Container;
+        $this->container = $container ?: new Application;
 
         $this->setupContainer((array) $viewPaths, $cachePath);
         (new ViewServiceProvider($this->container))->register();
